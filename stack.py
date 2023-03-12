@@ -49,7 +49,3 @@ class Stack:
             stack_representation += f'[{self.__stack[i]}]\n'
 
         return stack_representation
-
-
-nums_stack = Stack(5)
-print(nums_stack.top())
