@@ -4,6 +4,10 @@ class Stack:
         self.__top = -1
         self.__max_length = max_length
 
+    @property
+    def stack(self) -> list:
+        return self.__stack
+
     def is_empty(self) -> bool:
         ''' Returns a boolean indicating whether the stack is empty or not '''
         return self.__top == -1
