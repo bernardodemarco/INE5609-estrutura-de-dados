@@ -18,7 +18,7 @@ class Queue:
         return self.__num_of_elements == 0
 
     def is_full(self) -> bool:
-        ''' Returns a boolean indicating whether the queue is empty or not '''
+        ''' Returns a boolean indicating whether the queue is full or not '''
         return self.__num_of_elements == self.__max_length
 
     def enqueue(self, data: int) -> None:
@@ -47,8 +47,9 @@ class Queue:
 
     def head_element(self) -> int:
         ''' Returns the first value on the queue '''
-        if (self.is_empty()):
+        if self.is_empty():
             raise Exception('Queue is empty')
+
         return self.__queue[self.__head]
 
     def __str__(self) -> str:
