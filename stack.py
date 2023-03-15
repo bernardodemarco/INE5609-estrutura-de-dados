@@ -6,7 +6,7 @@ class Stack:
 
     @property
     def stack(self) -> list:
-        print('raw stack', self.__stack)
+        ''' stack getter method '''
         return self.__stack[:self.__top + 1]
 
     def is_empty(self) -> bool:
@@ -54,14 +54,3 @@ class Stack:
             stack_representation += f'[{self.__stack[i]}]\n'
 
         return stack_representation
-
-
-nums = Stack(4)
-nums.push(1)
-nums.push(2)
-nums.push(3)
-nums.push(4)
-nums.pop()
-nums.push(6)
-print(nums)
-print(nums.stack)
