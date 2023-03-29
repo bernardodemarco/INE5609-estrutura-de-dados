@@ -38,12 +38,22 @@ class Queue:
         if self.is_empty():
             raise Exception('Queue is empty')
 
+        # Temporary variable to store the removed item.
+        # In Python, without this, just by returning
+        # self.__queue[self.__head - 1] it would work fine,
+        # but in other languages it would not.
+        # For instance, imagine that head == max_length - 1,
+        # then head is incremented by one, becoming zero (mod division).
+        # If you accessed self.__queue[self.__head - 1],
+        # then you would receive an error (index == -1).
+        temp = self.__queue[self.__head]
+
         # Incrementing head using mod division handles
         # situations where (head == max_length - 1) and it'll
         # be incremented
         self.__head = (1 + self.__head) % self.__max_length
         self.__num_of_elements -= 1
-        return self.__queue[self.__head - 1]
+        return self.__queue[temp]
 
     def head_element(self) -> int:
         ''' Returns the first value on the queue '''
