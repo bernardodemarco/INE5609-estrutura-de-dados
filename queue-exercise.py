@@ -9,9 +9,7 @@ class Queue:
     @property
     def queue(self) -> list:
         ''' queue getter method '''
-        if self.__num_of_elements == 0:
-            return []
-        return self.__queue[self.__head: self.__tail + 1]
+        return self.__queue
 
     def is_empty(self) -> bool:
         ''' Returns a boolean indicating whether the queue is empty or not '''
@@ -53,7 +51,7 @@ class Queue:
         # be incremented
         self.__head = (1 + self.__head) % self.__max_length
         self.__num_of_elements -= 1
-        return self.__queue[temp]
+        return temp
 
     def head_element(self) -> int:
         ''' Returns the first value on the queue '''
@@ -61,13 +59,3 @@ class Queue:
             raise Exception('Queue is empty')
 
         return self.__queue[self.__head]
-
-    def __str__(self) -> str:
-        ''' Returns a string representation of the queue '''
-        if self.is_empty():
-            return 'HEAD - TAIL (empty queue)'
-
-        queue_str = 'HEAD - '
-        for i in range(self.__head, self.__tail + 1):
-            queue_str += f'({self.__queue[i]}) - '
-        return queue_str + 'TAIL'
