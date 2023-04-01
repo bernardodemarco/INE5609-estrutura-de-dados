@@ -9,47 +9,43 @@ node_5 = Node(11)
 node_6 = Node(15)
 node_7 = Node(19)
 node_8 = Node(25)
-node_9 = Node(50)
 
 queue = LinkedQueue(4)
 
 queue.enqueue(node_1)
+queue.enqueue(node_2)
 queue.enqueue(node_3)
 queue.enqueue(node_4)
-queue.enqueue(node_6)
+# queue.enqueue(node_5) throws exception queue is full
 
 print(queue)
+print(f'HEAD VALUE {queue.head_element().value}')
+print(f'HEAD NEXT VALUE {queue.head_element().next.value}\n')
 
-print('HEAD VALUE', queue.head_element().value)
-print('HEAD NEXT VALUE', queue.head_element().next.value)
-print('\n')
-
-print('REMOVED VALUE', queue.dequeue().value)
-print('HEAD VALUE', queue.head_element().value)
-print('HEAD NEXT VALUE', queue.head_element().next.value)
+print(f'REMOVED VALUE {queue.dequeue().value}')
+print(f'HEAD VALUE {queue.head_element().value}')
+print(f'HEAD NEXT VALUE {queue.head_element().next.value} \n')
 print(queue)
-print('\n')
 
-
-print('REMOVED VALUE', queue.dequeue().value)
-print('HEAD VALUE', queue.head_element().value)
-print('HEAD NEXT VALUE', queue.head_element().next.value)
+queue.enqueue(node_1)
 print(queue)
-print('\n')
+print(f'HEAD VALUE {queue.head_element().value}')
+print(f'HEAD NEXT VALUE {queue.head_element().next.value}\n')
 
-print('REMOVED VALUE', queue.dequeue().value)
-print('HEAD VALUE', queue.head_element().value)
-print('HEAD NEXT VALUE', queue.head_element().next)
+queue.dequeue()
+queue.dequeue()
+queue.dequeue()
+
 print(queue)
-print('\n')
+print(f'HEAD VALUE {queue.head_element().value}')
+print(f'HEAD NEXT VALUE {queue.head_element().next}\n')
 
-print('REMOVED VALUE', queue.dequeue().value)
-print(queue)
-print('\n')
+queue.dequeue()
+print(queue, '\n')
+# queue.dequeue() throws exception queue is empty
 
-queue.enqueue(node_2)
 queue.enqueue(node_5)
+queue.enqueue(node_6)
 queue.enqueue(node_7)
 queue.enqueue(node_8)
-# queue.enqueue(node_9)
 print(queue)

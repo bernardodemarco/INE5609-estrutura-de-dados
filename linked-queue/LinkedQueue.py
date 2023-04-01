@@ -24,17 +24,19 @@ class LinkedQueue:
             self.__num_of_elements += 1
             return
 
-        self.__num_of_elements += 1
         self.__tail.next = node
         self.__tail = self.__tail.next
+        self.__num_of_elements += 1
 
     def dequeue(self) -> Node:
         if self.is_empty():
             raise Exception('Queue is empty')
 
-        self.__num_of_elements -= 1
         temp = self.__head
         self.__head = self.__head.next
+        self.__num_of_elements -= 1
+        # removes the reference to the next node in the removed node
+        temp.next = None
         return temp
 
     def head_element(self) -> Node:
