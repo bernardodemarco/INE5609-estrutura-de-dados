@@ -81,10 +81,41 @@ class LinkedList:
         self.__num_of_elements += 1
 
     def insert(self, index: int, value) -> None:
-        pass
+        if index < 1 or index > self.__num_of_elements + 1:
+            raise Exception('Index out of range')
+
+        if index == 1:
+            return self.insert_at_start(value)
+
+        if index == self.__num_of_elements + 1:
+            return self.insert_at_end(value)
+
+        iterator = self.__start
+        counter = 1
+        while counter < index - 1:
+            iterator = iterator.next
+            counter += 1
+
+        node = Node(value)
+        node.next = iterator.next
+        iterator.next = node
+        self.__num_of_elements += 1
 
     def remove_first(self):
-        pass
+        if self.is_empty():
+            raise Exception('Linked list is empty')
+
+        temp = self.__start
+
+        if self.__num_of_elements == 1:
+            self.__start = None
+            self.__end = None
+            self.__num_of_elements -= 1
+            return temp.value
+
+        self.__start = self.__start.next
+        self.__num_of_elements -= 1
+        return temp.value
 
     def remove_last(self):
         pass

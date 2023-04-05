@@ -6,11 +6,21 @@ linked_list = LinkedList()
 print(f'LENGTH = {linked_list.length}')
 print(f'EMPTY = {linked_list.is_empty()}\n')
 
+try:
+    linked_list.remove_first()
+except:
+    print('Cannot remove items from an empty list\n')
+
 linked_list.insert_at_end(16)
 print(f'LENGTH = {linked_list.length}')
 print(f'START = {linked_list.get_first()}')
 print(f'END = {linked_list.get_last()}')
 print(f'{linked_list}\n')
+
+# removed_element = linked_list.remove_first()
+# print(f'REMOVED = {removed_element}')
+# print(f'LENGTH = {linked_list.length}')
+# print(f'{linked_list}\n')
 
 linked_list.insert_at_start(6)
 print(f'LENGTH = {linked_list.length}')
@@ -77,6 +87,69 @@ try:
     linked_list.insert_before(1, 1.5)
 except:
     print('error! target does not exist')
+print(f'LENGTH = {linked_list.length}')
+print(f'START = {linked_list.get_first()}')
+print(f'END = {linked_list.get_last()}')
+print(f'{linked_list}\n')
+
+linked_list.insert(6, 15.8)
+print(f'LENGTH = {linked_list.length}')
+print(f'START = {linked_list.get_first()}')
+print(f'END = {linked_list.get_last()}')
+print(f'{linked_list}\n')
+
+linked_list.insert(10, 10.01)
+print(f'LENGTH = {linked_list.length}')
+print(f'START = {linked_list.get_first()}')
+print(f'END = {linked_list.get_last()}')
+print(f'{linked_list}\n')
+
+linked_list.insert(1, 1)
+print(f'LENGTH = {linked_list.length}')
+print(f'START = {linked_list.get_first()}')
+print(f'END = {linked_list.get_last()}')
+print(f'{linked_list}\n')
+
+linked_list.insert(linked_list.length + 1, linked_list.length + 1)
+print(f'LENGTH = {linked_list.length}')
+print(f'START = {linked_list.get_first()}')
+print(f'END = {linked_list.get_last()}')
+print(f'{linked_list}\n')
+
+linked_list.insert(linked_list.length + 1, linked_list.length + 1)
+print(f'LENGTH = {linked_list.length}')
+print(f'START = {linked_list.get_first()}')
+print(f'END = {linked_list.get_last()}')
+print(f'{linked_list}\n')
+
+try:
+    linked_list.insert(0, 1.5)
+except:
+    print('error! index out of range')
+print(f'LENGTH = {linked_list.length}')
+print(f'START = {linked_list.get_first()}')
+print(f'END = {linked_list.get_last()}')
+print(f'{linked_list}\n')
+
+try:
+    linked_list.insert(linked_list.length + 2, 1.5)
+except:
+    print('error! index out of range')
+print(f'LENGTH = {linked_list.length}')
+print(f'START = {linked_list.get_first()}')
+print(f'END = {linked_list.get_last()}')
+print(f'{linked_list}\n')
+
+
+removed_element = linked_list.remove_first()
+print(f'REMOVED = {removed_element}')
+print(f'LENGTH = {linked_list.length}')
+print(f'START = {linked_list.get_first()}')
+print(f'END = {linked_list.get_last()}')
+print(f'{linked_list}\n')
+
+removed_element = linked_list.remove_first()
+print(f'REMOVED = {removed_element}')
 print(f'LENGTH = {linked_list.length}')
 print(f'START = {linked_list.get_first()}')
 print(f'END = {linked_list.get_last()}')
