@@ -14,9 +14,11 @@ class LinkedQueue:
     def is_full(self) -> bool:
         return self.__num_of_elements == self.__max_length
 
-    def enqueue(self, node: Node) -> None:
+    def enqueue(self, data) -> None:
         if self.is_full():
             raise Exception('Queue is full')
+
+        node = Node(data)
 
         if self.is_empty():
             self.__head = node
@@ -28,16 +30,14 @@ class LinkedQueue:
         self.__tail = self.__tail.next
         self.__num_of_elements += 1
 
-    def dequeue(self) -> Node:
+    def dequeue(self):
         if self.is_empty():
             raise Exception('Queue is empty')
 
         temp = self.__head
         self.__head = self.__head.next
         self.__num_of_elements -= 1
-        # removes the reference to the next node in the removed node
-        temp.next = None
-        return temp
+        return temp.value
 
     def head_element(self) -> Node:
         if self.is_empty():
