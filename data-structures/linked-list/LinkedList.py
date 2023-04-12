@@ -118,7 +118,27 @@ class LinkedList:
         return temp.value
 
     def remove_last(self):
-        pass
+        if self.is_empty():
+            raise Exception('Linked list is empty')
+
+        temp = self.__end
+
+        if self.__num_of_elements == 1:
+            self.__start = None
+            self.__end = None
+            self.__num_of_elements -= 1
+            return temp.value
+
+        counter = 1
+        iterator = self.__start
+        while counter < self.__num_of_elements - 1:
+            iterator = iterator.next
+            counter += 1
+
+        iterator.next = None
+        self.__end = iterator
+        self.__num_of_elements -= 1
+        return temp.value
 
     def remove(self, value):
         pass
@@ -138,8 +158,34 @@ class LinkedList:
 
         return self.__end.value
 
+    def get_element(self, target):
+        fake_node = Node(target)
+        self.__end.next = fake_node
+
+        iterator = self.__start
+        while iterator.value != target:
+            iterator = iterator.next
+
+        self.__end.next = None
+        if iterator == fake_node:
+            raise Exception('The element is not in the linked list')
+
+        return iterator.value
+
     def get_at_position(self, index: int):
-        pass
+        if index < 1 or index > self.__num_of_elements:
+            raise Exception('Index out of range')
+
+        if index == self.__num_of_elements:
+            return self.__end.value
+
+        counter = 1
+        iterator = self.__start
+        while counter < index:
+            iterator = iterator.next
+            counter += 1
+
+        return iterator.value
 
     def __str__(self) -> str:
         if self.is_empty():
