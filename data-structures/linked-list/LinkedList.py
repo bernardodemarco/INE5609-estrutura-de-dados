@@ -2,9 +2,10 @@ from Node import Node
 
 
 class LinkedList:
-    def __init__(self) -> None:
+    def __init__(self, max_length: int) -> None:
         self.__start = None
         self.__end = None
+        self.__max_length = max_length
         self.__num_of_elements = 0
 
     @property
@@ -14,7 +15,13 @@ class LinkedList:
     def is_empty(self) -> bool:
         return self.__num_of_elements == 0
 
+    def is_full(self) -> bool:
+        return self.__num_of_elements == self.__max_length
+
     def insert_at_start(self, value) -> None:
+        if self.is_full():
+            raise Exception('Linked list is full')
+
         node = Node(value)
 
         if self.is_empty():
@@ -28,6 +35,9 @@ class LinkedList:
         self.__num_of_elements += 1
 
     def insert_at_end(self, value) -> None:
+        if self.is_full():
+            raise Exception('Linked list is full')
+
         node = Node(value)
 
         if self.is_empty():
@@ -43,6 +53,9 @@ class LinkedList:
     def insert_after(self, target, value) -> None:
         if self.is_empty():
             raise Exception('Linked list is empty')
+
+        if self.is_full():
+            raise Exception('Linked list is full')
 
         iterator = self.__start
         while iterator is not None and iterator.value != target:
@@ -64,6 +77,9 @@ class LinkedList:
         if self.is_empty():
             raise Exception('Linked list is empty')
 
+        if self.is_full():
+            raise Exception('Linked list is full')
+
         iterator = self.__start
         if iterator.value == target:
             return self.insert_at_start(value)
@@ -81,6 +97,9 @@ class LinkedList:
         self.__num_of_elements += 1
 
     def insert(self, index: int, value) -> None:
+        if self.is_full():
+            raise Exception('Linked list is full')
+
         if index < 1 or index > self.__num_of_elements + 1:
             raise Exception('Index out of range')
 
@@ -159,6 +178,9 @@ class LinkedList:
         return self.__end.value
 
     def get_element(self, target):
+        if self.is_empty():
+            raise Exception('Linked list is empty')
+
         fake_node = Node(target)
         self.__end.next = fake_node
 
@@ -189,9 +211,9 @@ class LinkedList:
 
     def __str__(self) -> str:
         if self.is_empty():
-            return 'FIRST - LAST (EMPTY LIST)'
+            return 'START - END (EMPTY LIST)'
 
-        queue_str = 'FIRST - '
+        queue_str = 'START - '
         iterator = self.__start
         while iterator is not None:
             queue_str += f'({iterator.value}) - '
