@@ -11,13 +11,13 @@ class DoubleLinkedList:
     def __go_forward_k_positions(self, k: int) -> None:
         counter = 0
         while counter < k:
-            cursor = cursor.next
+            self.__cursor = self.__cursor.next
             counter += 1
 
     def __go_back_k_positions(self, k: int) -> None:
         counter = 0
         while counter < k:
-            cursor = cursor.previous
+            self.__cursor = self.__cursor.previous
             counter += 1
 
     def __go_to_start(self) -> None:
