@@ -16,5 +16,5 @@ class Node:
         return self.__next
 
     @next.setter
-    def next(self, new_next):
+    def next(self, new_next) -> None:
         self.__next = new_next

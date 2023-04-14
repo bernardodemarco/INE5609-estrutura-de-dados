@@ -52,16 +52,21 @@ class LinkedList:
 
     def insert_after(self, target, value) -> None:
         if self.is_empty():
-            raise Exception('Linked list is empty')
+            raise Exception(
+                'Linked list is empty, so the target does not exist in the list')
 
         if self.is_full():
             raise Exception('Linked list is full')
 
+        fake_node = Node(target)
+        self.__end.next = fake_node
+
         iterator = self.__start
-        while iterator is not None and iterator.value != target:
+        while iterator.value != target:
             iterator = iterator.next
 
-        if iterator is None:
+        self.__end.next = None
+        if iterator == fake_node:
             raise Exception(
                 'The target element that was provided does not exist in the list')
 
@@ -75,7 +80,8 @@ class LinkedList:
 
     def insert_before(self, target, value) -> None:
         if self.is_empty():
-            raise Exception('Linked list is empty')
+            raise Exception(
+                'Linked list is empty, so the target does not exist in the list')
 
         if self.is_full():
             raise Exception('Linked list is full')
@@ -84,12 +90,18 @@ class LinkedList:
         if iterator.value == target:
             return self.insert_at_start(value)
 
-        while iterator.next is not None and iterator.next.value != target:
+        fake_node = Node(target)
+        self.__end.next = fake_node
+
+        while iterator.next.value != target:
             iterator = iterator.next
 
-        if iterator.next is None:
+        if iterator.next == fake_node:
+            self.__end.next = None
             raise Exception(
                 'The target element that was provided does not exist in the list')
+
+        self.__end.next = None
 
         node = Node(value)
         node.next = iterator.next
@@ -213,11 +225,11 @@ class LinkedList:
         if self.is_empty():
             return 'START - END (EMPTY LIST)'
 
-        queue_str = 'START - '
+        list_str = 'START - '
         iterator = self.__start
         while iterator is not None:
-            queue_str += f'({iterator.value}) - '
+            list_str += f'({iterator.value}) - '
             iterator = iterator.next
-        queue_str += f'END'
+        list_str += f'END'
 
-        return queue_str
+        return list_str

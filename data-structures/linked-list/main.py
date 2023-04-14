@@ -66,36 +66,36 @@ print(f'START = {linked_list.get_first()}')
 print(f'END = {linked_list.get_last()}')
 print(f'{linked_list}\n')
 
-# try:
-#     linked_list.insert_after(2, 6.1)
-# except:
-#     print('error! target does not exist')
-# print(f'LENGTH = {linked_list.length}')
-# print(f'START = {linked_list.get_first()}')
-# print(f'END = {linked_list.get_last()}')
-# print(f'{linked_list}\n')
+try:
+    linked_list.insert_after(2, 6.1)
+except Exception as err:
+    print('error!', err)
+print(f'LENGTH = {linked_list.length}')
+print(f'START = {linked_list.get_first()}')
+print(f'END = {linked_list.get_last()}')
+print(f'{linked_list}\n')
 
-# linked_list.insert_before(10, 9)
-# print(f'LENGTH = {linked_list.length}')
-# print(f'START = {linked_list.get_first()}')
-# print(f'END = {linked_list.get_last()}')
-# print(f'{linked_list}\n')
+linked_list.insert_before(10, 9)
+print(f'LENGTH = {linked_list.length}')
+print(f'START = {linked_list.get_first()}')
+print(f'END = {linked_list.get_last()}')
+print(f'{linked_list}\n')
 
-# linked_list.insert_before(16, 15.9)
-# print(f'LENGTH = {linked_list.length}')
-# print(f'START = {linked_list.get_first()}')
-# print(f'END = {linked_list.get_last()}')
-# print(f'{linked_list}\n')
+linked_list.insert_before(40, 39)
+print(f'LENGTH = {linked_list.length}')
+print(f'START = {linked_list.get_first()}')
+print(f'END = {linked_list.get_last()}')
+print(f'{linked_list}\n')
 
 
-# try:
-#     linked_list.insert_before(1, 1.5)
-# except:
-#     print('error! target does not exist')
-# print(f'LENGTH = {linked_list.length}')
-# print(f'START = {linked_list.get_first()}')
-# print(f'END = {linked_list.get_last()}')
-# print(f'{linked_list}\n')
+try:
+    linked_list.insert_before(1, 1.5)
+except Exception as err:
+    print('error!', err)
+print(f'LENGTH = {linked_list.length}')
+print(f'START = {linked_list.get_first()}')
+print(f'END = {linked_list.get_last()}')
+print(f'{linked_list}\n')
 
 # linked_list.insert(6, 15.8)
 # print(f'LENGTH = {linked_list.length}')
