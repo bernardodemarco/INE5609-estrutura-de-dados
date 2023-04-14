@@ -171,11 +171,55 @@ class LinkedList:
         self.__num_of_elements -= 1
         return temp.value
 
-    def remove(self, value):
-        pass
+    def remove(self, target):
+        if self.is_empty():
+            raise Exception('Linked list is empty')
+
+        iterator = self.__start
+        if iterator.value == target:
+            return self.remove_first()
+
+        fake_node = Node(target)
+        self.__end.next = fake_node
+
+        while iterator.next.value != target:
+            iterator = iterator.next
+
+        if iterator.next == fake_node:
+            self.__end.next = None
+            raise Exception(
+                'The target element that was provided does not exist in the list')
+
+        self.__end.next = None
+
+        if iterator.next == self.__end:
+            return self.remove_last()
+
+        temp = iterator.next
+        iterator.next = iterator.next.next
+        self.__num_of_elements -= 1
+        return temp.value
 
     def remove_at_position(self, index: int):
-        pass
+        if index < 1 or index > self.__num_of_elements:
+            raise Exception('Index is out of range')
+
+        if index == 1:
+            return self.remove_first()
+
+        if index == self.__num_of_elements:
+            return self.remove_last()
+
+        iterator = self.__start
+        counter = 1
+        while counter < index - 1:
+            iterator = iterator.next
+            counter += 1
+
+        temp = iterator.next
+        iterator.next = iterator.next.next
+        self.__num_of_elements -= 1
+        return temp.value
 
     def get_first(self):
         if self.is_empty():
