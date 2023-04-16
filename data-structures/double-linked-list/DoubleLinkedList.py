@@ -32,20 +32,74 @@ class DoubleLinkedList:
     def is_full(self) -> bool:
         return self.__num_of_elements == self.__max_length
 
-    def insert_at_start(self, value) -> None:
-        pass
-
-    def insert_at_end(self, value) -> None:
-        pass
+    def __handle_insertion_with_empty_list(self, value) -> None:
+        node = Node(value)
+        self.__start = node
+        self.__cursor = node
+        node.previous = node
+        node.next = node
+        self.__num_of_elements += 1
 
     def insert_before_current(self, value) -> None:
-        pass
+        if self.is_full():
+            raise Exception('List is full')
+
+        if self.is_empty():
+            raise Exception(
+                'List is empty, so it is not possible to insert before current')
+
+        node = Node(value)
+        node.next = self.__cursor
+        node.previous = self.__cursor.previous
+        self.__cursor.previous.next = node
+        self.__cursor.previous = node
+        self.__num_of_elements += 1
+
+        if self.__cursor == self.__start:
+            self.__start = self.__cursor.previous
 
     def insert_after_current(self, value) -> None:
-        pass
+        if self.is_full():
+            raise Exception('List is full')
+
+        if self.is_empty():
+            raise Exception(
+                'List is empty, so it is not possible to insert after current')
+
+        node = Node(value)
+        node.next = self.__cursor.next
+        node.previous = self.__cursor
+        self.__cursor.next.previous = node
+        self.__cursor.next = node
+        self.__num_of_elements += 1
+
+    def insert_at_start(self, value) -> None:
+        if self.__num_of_elements == 0:
+            return self.__handle_insertion_with_empty_list(value)
+
+        self.__go_to_start()
+        self.insert_before_current(value)
+
+    def insert_at_end(self, value) -> None:
+        if self.__num_of_elements == 0:
+            return self.__handle_insertion_with_empty_list(value)
+
+        self.__go_to_end()
+        self.insert_after_current(value)
 
     def insert(self, index: int, value) -> None:
-        pass
+        if index < 1 or index > self.__num_of_elements + 1:
+            raise Exception('Index out of range')
+
+        if index == 1:
+            return self.insert_at_start(value)
+
+        if index == self.__num_of_elements + 1:
+            return self.insert_at_end(value)
+
+        self.__go_to_start()
+        self.__go_forward_k_positions(index - 1)
+        self.insert_before_current(value)
 
     def remove_first(self):
         pass
@@ -62,11 +116,42 @@ class DoubleLinkedList:
     def remove_current(self):
         pass
 
-    def contains(target) -> bool:
-        pass
+    def contains(self, target) -> bool:
+        if self.is_empty():
+            return False
+
+        self.__go_to_start()
+        fake_node = Node(target)
+        self.__start.previous.next = fake_node
+
+        while self.__cursor.value != target:
+            self.__cursor = self.__cursor.next
+
+        self.__start.previous.next = self.__start
+        if self.__cursor == fake_node:
+            self.__go_to_start()
+            return False
+
+        return True
 
     def get_current(self):
+        if self.is_empty():
+            raise Exception('List is empty')
+
+        return self.__cursor.value
+
+    def get_position_of(self, target) -> int:
         pass
 
-    def get_position_of(target) -> int:
-        pass
+    def print_list(self) -> None:
+        if self.is_empty():
+            print('START - END (EMPTY LIST)')
+
+        list_str = 'START - '
+        iterator = self.__start
+        while iterator.next != self.__start:
+            list_str += f'({iterator.value}) - '
+            iterator = iterator.next
+        list_str += f'({iterator.value}) - END'
+
+        print(list_str)
