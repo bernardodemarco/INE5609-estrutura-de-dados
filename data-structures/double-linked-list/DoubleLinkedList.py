@@ -101,20 +101,52 @@ class DoubleLinkedList:
         self.__go_forward_k_positions(index - 1)
         self.insert_before_current(value)
 
+    def remove_current(self):
+        if self.is_empty():
+            raise Exception(
+                'List is empty, so there is no element to be removed')
+
+        temp = self.__cursor
+
+        if self.__num_of_elements == 1:
+            self.__start = None
+            self.__cursor = None
+            self.__num_of_elements -= 1
+            return temp.value
+
+        self.__cursor.previous.next = self.__cursor.next
+        self.__cursor.next.previous = self.__cursor.previous
+        self.__num_of_elements -= 1
+
+        if self.__cursor == self.__start:
+            self.__start = self.__cursor.next
+            self.__go_forward_k_positions(1)
+        else:
+            self.__go_back_k_positions(1)
+
+        return temp.value
+
     def remove_first(self):
-        pass
+        self.__go_to_start()
+        return self.remove_current()
 
     def remove_last(self):
-        pass
+        self.__go_to_end()
+        return self.remove_current()
 
     def remove_element(self, target):
-        pass
+        if not self.contains(target):
+            raise Exception('The given element does not exist in the list')
+
+        return self.remove_current()
 
     def remove_at_position(self, index: int):
-        pass
+        if index < 1 or index > self.__num_of_elements:
+            raise Exception('Index out of range')
 
-    def remove_current(self):
-        pass
+        self.__go_to_start()
+        self.__go_forward_k_positions(index - 1)
+        return self.remove_current()
 
     def contains(self, target) -> bool:
         if self.is_empty():
@@ -141,11 +173,44 @@ class DoubleLinkedList:
         return self.__cursor.value
 
     def get_position_of(self, target) -> int:
-        pass
+        if self.is_empty():
+            raise Exception('List is empty')
+
+        self.__go_to_start()
+        fake_node = Node(target)
+        self.__start.previous.next = fake_node
+
+        position = 1
+        while self.__cursor.value != target:
+            self.__cursor = self.__cursor.next
+            position += 1
+
+        self.__start.previous.next = self.__start
+        if self.__cursor == fake_node:
+            self.__go_to_start()
+            raise Exception('The given element does not exist in the list')
+
+        return position
+
+    def get_start(self):
+        if self.is_empty():
+            raise Exception('List is empty')
+
+        return self.__start.value
+
+    def get_end(self):
+        if self.is_empty():
+            raise Exception('List is empty')
+
+        return self.__start.previous.value
+
+    def get_length(self):
+        return self.__num_of_elements
 
     def print_list(self) -> None:
         if self.is_empty():
             print('START - END (EMPTY LIST)')
+            return
 
         list_str = 'START - '
         iterator = self.__start
