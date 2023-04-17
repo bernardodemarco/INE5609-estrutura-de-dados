@@ -5,8 +5,12 @@ class DoubleLinkedList:
     def __init__(self, max_length: int) -> None:
         self.__start = None
         self.__cursor = None
-        self.__max_length = max_length
         self.__num_of_elements = 0
+        if isinstance(max_length, int) and max_length > 0:
+            self.__max_length = max_length
+        else:
+            raise Exception(
+                'max_length parameter must be an integer greater than zero')
 
     def __go_forward_k_positions(self, k: int) -> None:
         counter = 0
@@ -204,7 +208,7 @@ class DoubleLinkedList:
 
         return self.__start.previous.value
 
-    def get_length(self):
+    def get_length(self) -> int:
         return self.__num_of_elements
 
     def print_list(self) -> None:
@@ -213,10 +217,10 @@ class DoubleLinkedList:
             return
 
         list_str = 'START - '
-        iterator = self.__start
-        while iterator.next != self.__start:
-            list_str += f'({iterator.value}) - '
-            iterator = iterator.next
-        list_str += f'({iterator.value}) - END'
+        self.__go_to_start()
+        while self.__cursor.next != self.__start:
+            list_str += f'({self.__cursor.value}) - '
+            self.__cursor = self.__cursor.next
+        list_str += f'({self.__cursor.value}) - END\n'
 
         print(list_str)
