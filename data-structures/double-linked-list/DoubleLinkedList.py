@@ -62,6 +62,12 @@ class DoubleLinkedList:
         return self.__num_of_elements == self.__max_length
 
     def __handle_insertion_with_empty_list(self, value) -> None:
+        """
+        Insert element when the list is empty.
+
+        Args:
+            value: element to be inserted.
+        """
         node = Node(value)
         self.__start = node
         self.__cursor = node
@@ -70,6 +76,15 @@ class DoubleLinkedList:
         self.__num_of_elements += 1
 
     def insert_before_current(self, value) -> None:
+        """
+        Insert element before list's current element.
+
+        Args:
+            value: element to be inserted.
+
+        Raises:
+            Exception: if list is full or empty.
+        """
         if self.is_full():
             raise Exception('List is full')
 
@@ -88,6 +103,15 @@ class DoubleLinkedList:
             self.__start = self.__cursor.previous
 
     def insert_after_current(self, value) -> None:
+        """
+        Insert element after list's current element.
+
+        Args:
+            value: element to be inserted.
+
+        Raises:
+            Exception: if list is full or empty.
+        """
         if self.is_full():
             raise Exception('List is full')
 
@@ -103,6 +127,15 @@ class DoubleLinkedList:
         self.__num_of_elements += 1
 
     def insert_at_start(self, value) -> None:
+        """
+        Insert element at the start of the list.
+
+        Args:
+            value: element to be inserted.
+
+        Raises:
+            Exception: if list is full.
+        """
         if self.__num_of_elements == 0:
             return self.__handle_insertion_with_empty_list(value)
 
@@ -110,6 +143,15 @@ class DoubleLinkedList:
         self.insert_before_current(value)
 
     def insert_at_end(self, value) -> None:
+        """
+        Insert element at the end of the list.
+
+        Args:
+            value: element to be inserted.
+
+        Raises:
+            Exception: if list is full.
+        """
         if self.__num_of_elements == 0:
             return self.__handle_insertion_with_empty_list(value)
 
@@ -117,6 +159,16 @@ class DoubleLinkedList:
         self.insert_after_current(value)
 
     def insert(self, index: int, value) -> None:
+        """
+        Insert element at a given index in the list.
+
+        Args:
+            index (int): position to insert the element in.
+            value: element to be inserted.
+
+        Raises:
+            Exception: if index is less than one or greater than the list's length plus one.
+        """
         if index < 1 or index > self.__num_of_elements + 1:
             raise Exception('Index out of range')
 
@@ -131,6 +183,20 @@ class DoubleLinkedList:
         self.insert_before_current(value)
 
     def remove_current(self):
+        """
+        Remove the current element. 
+
+        Remove the current element. Once it has been removed, the list's 
+        current element becomes the previous element of the removed element.
+        However, if the element that was removed was the list's first element,
+        then the list's current element will be the next element of the removed one.
+
+        Returns:
+            element that has been removed.
+
+        Raises:
+            Exception: if list is empty.
+        """
         if self.is_empty():
             raise Exception(
                 'List is empty, so there is no element to be removed')
@@ -156,14 +222,56 @@ class DoubleLinkedList:
         return temp.value
 
     def remove_first(self):
+        """
+        Remove the first element of the list. The list's current element becomes the next element of the removed one.
+
+        Returns:
+            element that has been removed.
+
+        Raises:
+            Exception: if list is empty.
+        """
+        if self.is_empty():
+            raise Exception(
+                'List is empty, so there is no element to be removed')
+
         self.__go_to_start()
         return self.remove_current()
 
     def remove_last(self):
+        """
+        Remove the last element of the list. The list's current element becomes the previous element of the removed one.
+
+        Returns:
+            element that has been removed.
+
+        Raises:
+            Exception: if list is empty.
+        """
+        if self.is_empty():
+            raise Exception(
+                'List is empty, so there is no element to be removed')
+
         self.__go_to_end()
         return self.remove_current()
 
     def remove_element(self, target):
+        """
+        Remove element that was passed as parameter.
+
+        Once it has been removed, the list's current element becomes the previous
+        element of the removed element. However, if the element that was removed was
+        the list's first element, then the list's current element will be the next element of the removed one.
+
+        Args:
+            target: element to be removed.
+
+        Returns:
+            element that has been removed.
+
+        Raises:
+            Exception: if element is not in the list.
+        """
         if not self.contains(target):
             raise Exception('The given element does not exist in the list')
 
@@ -172,6 +280,10 @@ class DoubleLinkedList:
     def remove_at_position(self, index: int):
         """
         Remove element at a given position from the list.
+
+        Once it has been removed, the list's current element becomes the previous
+        element of the removed element. However, if the element that was removed was
+        the list's first element, then the list's current element will be the next element of the removed one.
 
         Args:
             index (int): position of the element to be removed.
@@ -192,6 +304,9 @@ class DoubleLinkedList:
     def contains(self, target) -> bool:
         """
         Check if a given element is in the list.
+
+        If the element is in the list, it will become the list's current element. 
+        If it is not, then the list's current element will be the first element.
 
         Args:
             target: element to be searched for in the list.
