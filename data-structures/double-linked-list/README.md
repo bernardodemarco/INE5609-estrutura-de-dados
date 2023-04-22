@@ -90,11 +90,11 @@ Remove e retorna o elemento que o cursor está apontando. Após a remoção, o c
 
 #### remove_first
 
-Remove e retorna o primeiro elemento da lista. Se a lista está vazia, então é levantada uma exceção. Caso contrátio o método \_\_go_to_start e remove_current são executados.
+Remove e retorna o primeiro elemento da lista. Se a lista está vazia, então é levantada uma exceção. Caso contrário o método \_\_go_to_start e remove_current são executados.
 
 #### remove_last
 
-Remove e retorna um dado elemento da lista. Se a lista está vazia, então é levantada uma exceção. Caso contrátio o método \_\_go_to_end e remove_current são executados.
+Remove e retorna o último elemento da lista. Se a lista está vazia, então é levantada uma exceção. Caso contrário o método \_\_go_to_end e remove_current são executados.
 
 #### remove_element
 
@@ -102,7 +102,8 @@ Remove e retorna um dado elemento da lista. O método contains é chamado para v
 
 #### remove_at_position
 
-Remove e retorna o elemento que está em uma dada posição da lista. Se a posição passada como parâmetro for menor do que 1 ou maior do que o número de elementos da lista, então uma exceção é levantada. Se não, o cursor vai para o começo da lista e avança posição - 1 posições. Após isso, é executado o método remove_current.
+Remove e retorna o elemento que está em uma dada posição da lista. Se a posição passada como parâmetro for menor do que 1 ou maior do que o número de elementos da lista, então uma exceção é levantada. Caso a posição seja igual a 1, é chamado o método remove_first. Caso a posição seja igual ao número de elementos, é chamado o método remove_last. Caso contrário,
+o cursor vai para o começo da lista e avança posição - 1 posições. Após isso, é executado o método remove_current.
 
 ### Outros métodos
 
