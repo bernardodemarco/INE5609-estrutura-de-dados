@@ -10,7 +10,7 @@ class DoubleLinkedList:
             max_length (int): maximum length of the list.
 
         Raises:
-            Exception: if max_length is not a number of if it is less than 1.
+            Exception: if max_length is not a number or if it is less than 1.
         """
         self.__start = None
         self.__cursor = None
@@ -77,7 +77,7 @@ class DoubleLinkedList:
 
     def insert_before_current(self, value) -> None:
         """
-        Insert element before list's current element.
+        Insert element before list's current element (cursor).
 
         Args:
             value: element to be inserted.
@@ -104,7 +104,7 @@ class DoubleLinkedList:
 
     def insert_after_current(self, value) -> None:
         """
-        Insert element after list's current element.
+        Insert element after list's current element (cursor).
 
         Args:
             value: element to be inserted.
@@ -158,7 +158,7 @@ class DoubleLinkedList:
         self.__go_to_end()
         self.insert_after_current(value)
 
-    def insert(self, index: int, value) -> None:
+    def insert_at_position(self, index: int, value) -> None:
         """
         Insert element at a given index in the list.
 

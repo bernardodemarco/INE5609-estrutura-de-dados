@@ -2,19 +2,6 @@ from DoubleLinkedList import DoubleLinkedList
 
 
 def print_list_data(list_pointer: DoubleLinkedList) -> None:
-    """
-    Summary line.
-
-    Args:
-        arg1 (type): description.
-
-    Returns:
-        type: description.
-
-    Raises:
-        Exception: when.
-
-    """
     try:
         print(
             f'START = {list_pointer.get_start()} - END = {list_pointer.get_end()} - LENGTH = {list_pointer.get_length()}')
