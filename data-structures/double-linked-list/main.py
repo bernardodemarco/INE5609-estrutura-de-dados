@@ -4,7 +4,7 @@ from DoubleLinkedList import DoubleLinkedList
 def print_list_data(list_pointer: DoubleLinkedList) -> None:
     try:
         print(
-            f'START = {list_pointer.get_start()} - END = {list_pointer.get_end()} - LENGTH = {list_pointer.get_length()}')
+            f'CURSOR = {list_pointer.get_current()} - START = {list_pointer.get_start()} - END = {list_pointer.get_end()} - LENGTH = {list_pointer.get_length()}')
         list_pointer.print_list()
     except:
         list_pointer.print_list()
@@ -41,11 +41,26 @@ print_list_data(linked_list)
 
 print('POSITION OF 10.1 =', linked_list.get_position_of(10.1))
 linked_list.insert_after_current(10.125)
+linked_list.insert_at_end(10.2)
 print_list_data(linked_list)
 
 print('REMOVED ELEMENT =', linked_list.remove_element(10.05))
-print('REMOVED ELEMENT', linked_list.remove_at_position(3))
+print('REMOVED ELEMENT =', linked_list.remove_at_position(3))
+print('REMOVED ELEMENT =', linked_list.remove_first())
+print('REMOVED ELEMENT =', linked_list.remove_last())
 print_list_data(linked_list)
+
+try:
+    print('REMOVED ELEMENT =', linked_list.remove_element(10.2))
+except Exception as err:
+    print(err)
+    print_list_data(linked_list)
+
+try:
+    print('REMOVED ELEMENT =', linked_list.remove_at_position(3))
+except Exception as err:
+    print(err)
+    print_list_data(linked_list)
 
 print(linked_list.contains(10))
 print(linked_list.contains(10.1))
