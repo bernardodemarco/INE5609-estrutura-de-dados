@@ -297,6 +297,12 @@ class DoubleLinkedList:
         if index < 1 or index > self.__num_of_elements:
             raise Exception('Index out of range')
 
+        if index == 1:
+            return self.remove_first()
+
+        if index == self.__num_of_elements:
+            return self.remove_last()
+
         self.__go_to_start()
         self.__go_forward_k_positions(index - 1)
         return self.remove_current()

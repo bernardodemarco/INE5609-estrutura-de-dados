@@ -1,25 +1,56 @@
-# Relatório T1 - Lista Duplamente Encadeada
+# Relatório T1 - Lista Duplamente Encadeada Com Cursor
 
-Esse documento é o relatório do trabalho 1 da disicplina INE5609, feito pelo aluno Bernardo De Marco Gonçalves.
+Esse documento é o relatório do trabalho 1 da disicplina INE5609 feito pelo aluno Bernardo De Marco Gonçalves.
+
+## Sumário
+
+- [Sobre a documentação](#documentação-dos-métodos)
+- [Diagrama de classes](#diagrama-de-classes)
+- [Atributos classe Node](#atributos-node)
+- [Atributos classe DoubleLinkedList](#atributos-doublelinkedlist)
+- [Métodos](#métodos)
+
+## Documentação dos métodos
+
+A documentação dos métodos foi feita com [docstrings](https://peps.python.org/pep-0257/), seguindo o seguinte padrão:
+
+```python
+    def docs_pattern():
+        """
+        Breve descrição do método.
+
+        Descrição mais detalhada do método caso seja necessária.
+
+        Args:
+            nome_parametro (tipo_parametro): descrição.
+
+        Returns:
+            tipo_retorno: descrição.
+
+        Raises:
+            Exceção: descrição.
+        """
+        pass
+```
 
 ## Diagrama de classes
 
 Para a implementação da lista duplamente encadeada com cursor foram implementadas duas classes, a DoubleLinkedList e a Node. Segue o diagrama de classes contendo os atributos e métodos delas.
 
-[![](https://mermaid.ink/img/pako:eNqtVLtu4zAQ_BWClZLYRVoXqVLmrkkrgKDFlUyYWgrk0rER-N-zejmSfDpcgFNFzYxmxeFyP2XhDcidLJyO8dXqKug6R8FPh4jfTH_2gBDbk3YJxE5ovNwwhDMx1ApvWBPgZH2KM_w69X31ae_gzeIRzJuN9F0jkg53hkUK0YcliqlWvlTgoAaktppFurG1PisHWNFhQShVeVX68KGDUUfV-GjJeozZsRc-cBWEuXyvi-NP9ORVt5FshQQ099RBo3GgLEYIbQX1YemgoG7oohyHlE3yn3_8ZGOvY9O9926Kl8m5O7grofbAMYDidAMH-Df7Xq9LgvADOQ0h_IuyTeR_6sZjGk9pI9a_ClD703cOD9MGH8nShrhCcUevMENrZpxCBTTW_oNw-sMWDZzH1ppqC4-keYcLu9nJMr6yj5YZa_C1WZhMLkinHLt36dA37hLt71k2t2kCv_WNO817mAPLCSBy-ZxLsd2-8OqRV-1VlxtZQ6i1NTyjuhmRSzpwprnc8dJAqZOjXOZ4ZalO5N8vWMgdhQQbmRqjCYapNoJgLPnwaxh7HktbyesX7A-eew?type=png)](https://mermaid.live/edit#pako:eNqtVLtu4zAQ_BWClZLYRVoXqVLmrkkrgKDFlUyYWgrk0rER-N-zejmSfDpcgFNFzYxmxeFyP2XhDcidLJyO8dXqKug6R8FPh4jfTH_2gBDbk3YJxE5ovNwwhDMx1ApvWBPgZH2KM_w69X31ae_gzeIRzJuN9F0jkg53hkUK0YcliqlWvlTgoAaktppFurG1PisHWNFhQShVeVX68KGDUUfV-GjJeozZsRc-cBWEuXyvi-NP9ORVt5FshQQ099RBo3GgLEYIbQX1YemgoG7oohyHlE3yn3_8ZGOvY9O9926Kl8m5O7grofbAMYDidAMH-Df7Xq9LgvADOQ0h_IuyTeR_6sZjGk9pI9a_ClD703cOD9MGH8nShrhCcUevMENrZpxCBTTW_oNw-sMWDZzH1ppqC4-keYcLu9nJMr6yj5YZa_C1WZhMLkinHLt36dA37hLt71k2t2kCv_WNO817mAPLCSBy-ZxLsd2-8OqRV-1VlxtZQ6i1NTyjuhmRSzpwprnc8dJAqZOjXOZ4ZalO5N8vWMgdhQQbmRqjCYapNoJgLPnwaxh7HktbyesX7A-eew)
+[![Diagrama de classes](https://mermaid.ink/img/pako:eNqVVLFugzAQ_RXLE22ToStDp45ph3ZFshx8JFaMjexzmqjKv_fAkAIpVcuCeff8jnu-8ycvnQKe89LIEJ613HlZF5bRo7SHErWzbPOWkI7DXmnDZwIYWx-licByJu35ilk4IUEt8Yo1Ho7axTDBL2PdZxe3BjbaHkBtdMDvHAGlvxEsow_Oz1Eba-EqAQZqsNhm0xav0VqehAG7w_0sIMTOicr5D-mVOIjGBd1WHrJDIt5RFgtT-laWh__w0YmukGwhCFbdhvbSKgNC2wC-zSA-NO4F1A2ehSGTspH_080POiQeiW6dM2O8isbcwF0KsQWyAQS568nA3-QTX1YI_h907E34C7N15C-8wf5MWwWndAIrtrzTQ-2O3zXejZt3CFbah4UQdetCpG-7jCrcAQ65fyAu_PSUWzqLkqqcyU1OjfCFOtrIkINGYiYyav6OOXTmXCE15RxNM5RNZRpPX6kpx373Mz6fblbwx4Kz9fqJVve0aseYr3gNvpZa0Y3UzX_BcU-eFjynpYJKRoMFL-yFqDKiez_bkufoI6x4bJRE6O8wnlfSBEJBaXT-pb_l2tflC_APmG0?type=png)](https://mermaid.live/edit#pako:eNqVVLFugzAQ_RXLE22ToStDp45ph3ZFshx8JFaMjexzmqjKv_fAkAIpVcuCeff8jnu-8ycvnQKe89LIEJ613HlZF5bRo7SHErWzbPOWkI7DXmnDZwIYWx-licByJu35ilk4IUEt8Yo1Ho7axTDBL2PdZxe3BjbaHkBtdMDvHAGlvxEsow_Oz1Eba-EqAQZqsNhm0xav0VqehAG7w_0sIMTOicr5D-mVOIjGBd1WHrJDIt5RFgtT-laWh__w0YmukGwhCFbdhvbSKgNC2wC-zSA-NO4F1A2ehSGTspH_080POiQeiW6dM2O8isbcwF0KsQWyAQS568nA3-QTX1YI_h907E34C7N15C-8wf5MWwWndAIrtrzTQ-2O3zXejZt3CFbah4UQdetCpG-7jCrcAQ65fyAu_PSUWzqLkqqcyU1OjfCFOtrIkINGYiYyav6OOXTmXCE15RxNM5RNZRpPX6kpx373Mz6fblbwx4Kz9fqJVve0aseYr3gNvpZa0Y3UzX_BcU-eFjynpYJKRoMFL-yFqDKiez_bkufoI6x4bJRE6O8wnlfSBEJBaXT-pb_l2tflC_APmG0)
 
 ## Atributos Node
 
 - value - Valor guardado dentro do Node.
-- next - Elemento sucessor do atual. Caso o elemento atual seja o último da lista, o sucessor dele é o primeiro da lista.
-- previous - Elemento antecessor do atual. Caso o elemento atual seja o primeiro da lista, o antecessor dele é o último da lista.
+- next - Ponteiro para o elemento sucessor do atual. Caso o elemento atual seja o último da lista, o sucessor dele é o primeiro da lista.
+- previous - Ponteiro para o elemento antecessor do atual. Caso o elemento atual seja o primeiro da lista, o antecessor dele é o último da lista.
 
 Esses casos especiais dos atributos next e previous caracterizam a lista como sendo uma lista duplamente encadeada circular.
 
 ## Atributos DoubleLinkedList
 
-- start - Pointeiro que aponta para o Node que está no começo da lista.
-- cursor - Pointeiro que aponta para algum Node da lista. Seu propósito é facilitar a implementação das operações sobre a lista.
+- start - Ponteiro para o Node que está no começo da lista.
+- cursor - Ponteiro para algum Node da lista. Seu propósito é facilitar a implementação das operações sobre a lista.
 - num_of_elements - Número de elementos da lista.
 - max_length - Número de elementos máximo da lista.
 
@@ -67,7 +98,7 @@ Remove e retorna um dado elemento da lista. Se a lista está vazia, então é le
 
 #### remove_element
 
-Remove e retorna o último elemento da lista. O método contains é chamado para verificar se o elemento está ou não presente. Se não estiver, então uma exceção é levantada. Caso contrário, é executado o método remove_current.
+Remove e retorna um dado elemento da lista. O método contains é chamado para verificar se o elemento está ou não presente. Se não estiver, então uma exceção é levantada. Caso contrário, é executado o método remove_current.
 
 #### remove_at_position
 
@@ -77,8 +108,12 @@ Remove e retorna o elemento que está em uma dada posição da lista. Se a posi�
 
 #### contains
 
-Retorna um valor booleano indicando se um dado elemento está na lista. Itera através dos elementos procurando o elemento alvo. Se não encontrou, move o cursor para o início e retorna False. Se encontrou, deixa o cursor apontando para o elemento alvo e retorna True.
+Retorna um valor booleano indicando se um dado elemento está na lista. Percorre a lista procurando o elemento alvo. Se não encontrou, move o cursor para o início e retorna False. Se encontrou, deixa o cursor apontando para o elemento alvo e retorna True.
 
 #### get_position_of
 
-Retorna a posição de um elemento alvo na lista. Itera através dos elementos procurando o elemento alvo com um contador que vai sendo incrementado por um a cada iteração. Se não encontrou o elemento, levanta uma exceção. Se encontrou, deixa o cursor apontando para o elemento alvo e retorna o valor do contador.
+Retorna a posição de um elemento alvo na lista. Percorre a lista procurando o elemento alvo com um contador que vai sendo incrementado por um a cada iteração. Se não encontrou o elemento, levanta uma exceção. Se encontrou, deixa o cursor apontando para o elemento alvo e retorna o valor do contador.
+
+#### get_start, get_end, get_current, get_length e print_list
+
+Os quatro primeiros métodos retornam o primeiro elemento, o último, o cursor e a quantidade de elementos da lista, respectivamente. Já o print_list percorre a lista, pegando os dados de cada Node e executa a função print com os dados coletados. Após a execução desse método, o cursor passa a ser o último elemento da lista.
