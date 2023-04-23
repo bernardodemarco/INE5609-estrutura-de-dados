@@ -11,11 +11,10 @@ class Hash:
 
     def insert(self, value) -> None:
         address = self.__hash(value)
-        if self.__table[address] is not None:
-            self.__table[address].insert_at_start(value)
-            return
 
-        self.__table[address] = LinkedList()
+        if self.__table[address] is None:
+            self.__table[address] = LinkedList()
+
         self.__table[address].insert_at_start(value)
 
     def remove(self, target):
