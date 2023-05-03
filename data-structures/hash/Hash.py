@@ -33,5 +33,5 @@ class Hash:
 
     def print_hash(self) -> None:
         for i in range(self.__table_size):
-            print(f'GROUP = {i}', end=' ')
+            print(f'BUCKET = {i}', end=' ')
             print(f'{self.__table[i]}\n')
