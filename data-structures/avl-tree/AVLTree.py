@@ -5,6 +5,9 @@ class AVLTree:
     def __init__(self) -> None:
         self.__root = None
 
+    def __is_empty(self) -> bool:
+        return self.__root is None
+
     def __get_height(self, root) -> int:
         if root is None:
             return 0
@@ -24,8 +27,11 @@ class AVLTree:
         root.right = left_subtree
         new_root.left = root
 
-        root.height = max(root.left.height, root.right.height) + 1
-        new_root.height = max(new_root.left.height, new_root.right.height) + 1
+        root.height = max(self.__get_height(root.left),
+                          self.__get_height(root.right)) + 1
+
+        new_root.height = max(self.__get_height(
+            new_root.left), self.__get_height(new_root.right)) + 1
 
         return new_root
 
@@ -36,8 +42,11 @@ class AVLTree:
         root.left = right_subtree
         new_root.right = root
 
-        root.height = max(root.left.height, root.right.height) + 1
-        new_root.height = max(new_root.left.height, new_root.right.height) + 1
+        root.height = max(self.__get_height(root.left),
+                          self.__get_height(root.right)) + 1
+
+        new_root.height = max(self.__get_height(
+            new_root.left), self.__get_height(new_root.right)) + 1
 
         return new_root
 
@@ -49,8 +58,43 @@ class AVLTree:
         root.left = self.__left_rotate(root.left)
         return self.__right_rotate(root)
 
-    def __insert(self):
-        pass
+    def __insert(self, value, root):
+        if root is None or self.__is_empty():
+            return Node(value)
+
+        if value < root.value:
+            root.left = self.__insert(value, root.left)
+        elif value > root.value:
+            root.right = self.__insert(value, root.right)
+
+        root.height = max(self.__get_height(root.left),
+                          self.__get_height(root.right)) + 1
+
+        balance_factor = self.__get_balance_factor(root)
+        if balance_factor < -1:
+            if value < root.right.value:
+                return self.__right_left_rotate(root)
+
+            return self.__left_rotate(root)
+        elif balance_factor > 1:
+            if value > root.left.value:
+                return self.__left_right_rotate(root)
+
+            return self.__right_rotate(root)
+
+        return root
 
     def __remove(self):
         pass
+
+    def __pre_order(self, root) -> None:
+        if root is not None:
+            print(root.value, end=', ')
+            self.__pre_order(root.left)
+            self.__pre_order(root.right)
+
+    def insert(self, value) -> None:
+        self.__root = self.__insert(value, self.__root)
+
+    def print_pre_order(self) -> None:
+        self.__pre_order(self.__root)
