@@ -88,10 +88,14 @@ class BinarySearchTree:
         self.__insert(value, self.__root)
 
     def remove(self, key):
-        self.__remove(key, self.__root)
+        self.__root = self.__remove(key, self.__root)
 
     def print_pre_order(self):
         pre_order_sequence = self.__pre_order(self.__root, [])
+
+        if len(pre_order_sequence) == 0:
+            print('TREE IS EMPTY')
+            return
 
         for i in range(len(pre_order_sequence) - 1):
             print(pre_order_sequence[i].value, end=', ')
@@ -101,6 +105,10 @@ class BinarySearchTree:
     def print_post_order(self):
         post_order_sequence = self.__post_order(self.__root, [])
 
+        if len(post_order_sequence) == 0:
+            print('TREE IS EMPTY')
+            return
+
         for i in range(len(post_order_sequence) - 1):
             print(post_order_sequence[i].value, end=', ')
 
@@ -108,6 +116,10 @@ class BinarySearchTree:
 
     def print_in_order(self):
         in_order_sequence = self.__in_order(self.__root, [])
+
+        if len(in_order_sequence) == 0:
+            print('TREE IS EMPTY')
+            return
 
         for i in range(len(in_order_sequence) - 1):
             print(in_order_sequence[i].value, end=', ')

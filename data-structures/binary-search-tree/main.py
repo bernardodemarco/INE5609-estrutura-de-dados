@@ -3,7 +3,6 @@ from BinarySearchTree import BinarySearchTree
 
 bst = BinarySearchTree()
 
-bst.insert(10)
 bst.insert(12)
 bst.insert(18)
 bst.insert(22)
