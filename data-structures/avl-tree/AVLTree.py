@@ -84,8 +84,50 @@ class AVLTree:
 
         return root
 
-    def __remove(self):
-        pass
+    def __min(self, root: Node) -> Node:
+        iterator = root
+        while iterator.left is not None:
+            iterator = iterator.left
+
+        return iterator
+
+    def __remove(self, value, root):
+        if root is None:
+            return root
+
+        if value < root.value:
+            root.left = self.__remove(value, root.left)
+        elif value > root.value:
+            root.right = self.__remove(value, root.right)
+        else:
+            if root.left is not None and root.right is not None:
+                successor = self.__min(root.right)
+                root.value = successor.value
+                root.right = self.__remove(successor.value, root.right)
+                # return root
+            elif root.left is not None:
+                return root.left
+            elif root.right is not None:
+                return root.right
+            else:
+                return None
+
+        root.height = max(self.__get_height(root.left),
+                          self.__get_height(root.right)) + 1
+
+        balance_factor = self.__get_balance_factor(root)
+        if balance_factor < -1:
+            if self.__get_balance_factor(root.right) > 0:
+                return self.__right_left_rotate(root)
+
+            return self.__left_rotate(root)
+        elif balance_factor > 1:
+            if self.__get_balance_factor(root.left) < 0:
+                return self.__left_right_rotate(root)
+
+            return self.__right_rotate(root)
+
+        return root
 
     def __pre_order(self, root) -> None:
         if root is not None:
@@ -93,8 +135,25 @@ class AVLTree:
             self.__pre_order(root.left)
             self.__pre_order(root.right)
 
+    def search(self, value):
+        iterator = self.__root
+
+        while iterator is not None and iterator.value != value:
+            if value < iterator.value:
+                iterator = iterator.left
+            else:
+                iterator = iterator.right
+
+        if iterator is None:
+            raise Exception('The given element does not exist in the tree')
+
+        return iterator.value
+
     def insert(self, value) -> None:
         self.__root = self.__insert(value, self.__root)
+
+    def remove(self, value) -> None:
+        self.__root = self.__remove(value, self.__root)
 
     def print_pre_order(self) -> None:
         self.__pre_order(self.__root)
