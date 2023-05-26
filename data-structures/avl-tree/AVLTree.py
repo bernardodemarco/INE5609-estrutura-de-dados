@@ -64,7 +64,7 @@ class AVLTree:
 
         if value < root.value:
             root.left = self.__insert(value, root.left)
-        elif value > root.value:
+        else:
             root.right = self.__insert(value, root.right)
 
         root.height = max(self.__get_height(root.left),
