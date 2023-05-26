@@ -5,9 +5,6 @@ class AVLTree:
     def __init__(self) -> None:
         self.__root = None
 
-    def __is_empty(self) -> bool:
-        return self.__root is None
-
     def __get_height(self, root) -> int:
         if root is None:
             return 0
@@ -59,7 +56,7 @@ class AVLTree:
         return self.__right_rotate(root)
 
     def __insert(self, value, root):
-        if root is None or self.__is_empty():
+        if root is None:
             return Node(value)
 
         if value < root.value:
