@@ -104,7 +104,6 @@ class AVLTree:
                 successor = self.__min(root.right)
                 root.value = successor.value
                 root.right = self.__remove(successor.value, root.right)
-                # return root
             elif root.left is not None:
                 return root.left
             elif root.right is not None:
@@ -134,20 +133,6 @@ class AVLTree:
             print(root.value, end=', ')
             self.__pre_order(root.left)
             self.__pre_order(root.right)
-
-    def search(self, value):
-        iterator = self.__root
-
-        while iterator is not None and iterator.value != value:
-            if value < iterator.value:
-                iterator = iterator.left
-            else:
-                iterator = iterator.right
-
-        if iterator is None:
-            raise Exception('The given element does not exist in the tree')
-
-        return iterator.value
 
     def insert(self, value) -> None:
         self.__root = self.__insert(value, self.__root)
