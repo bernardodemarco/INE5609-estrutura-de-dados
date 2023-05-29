@@ -2,16 +2,30 @@ from Screen import Screen
 from DecisionTree import DecisionTree
 from Node import Node
 from enums import Answer, Direction
+import pickle
+
+FILENAME = 'tree-data.pkl'
 
 
 class Controller:
     def __init__(self) -> None:
         self.__screen = Screen()
-        self.__tree = DecisionTree('Chapecoense')
+        self.__tree = None
+        try:
+            self.__tree = self.__load()
+        except FileNotFoundError:
+            self.__tree = DecisionTree('Chapecoense')
+
+    def __load(self):
+        with open(FILENAME, 'rb') as f:
+            return pickle.load(f)
+
+    def __dump(self):
+        with open(FILENAME, 'wb') as f:
+            pickle.dump(self.__tree, f)
 
     def play_game(self):
         self.__screen.show_message('Pense em um time de futebol!')
-        self.__tree.print_pre_order()
 
         iterator = self.__tree.root
         parent = None
@@ -44,6 +58,7 @@ class Controller:
         if answer == Answer.YES.value:
             self.play_game()
         elif answer == Answer.NO.value:
+            self.__dump()
             exit(0)
 
     def run(self):

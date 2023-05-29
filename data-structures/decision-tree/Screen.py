@@ -1,21 +1,23 @@
 class Screen:
-    def __validate_option(self, max_value: int) -> int:
+    def read_answer(self, message='') -> str:
         while True:
-            answer = int(self.read_answer())
-            if 0 <= answer <= max_value:
+            answer = input(message).strip()
+            if len(answer) > 0:
                 return answer
             print(
-                f'Resposta inválida! Por favor, digite um número entre 0 e {max_value}.')
+                f'Resposta inválida! Por favor, insira ao menos um caractere.')
 
     def show_options(self) -> int:
         print('AKINATOR - TIMES DE FUTEBOL')
         print('O que você gostaria de fazer?')
         print('0 - Encerrar')
         print('1 - Jogar')
-        return self.__validate_option(1)
-
-    def read_answer(self, message='') -> str:
-        return input(message).lower().strip()
+        while True:
+            answer = int(self.read_answer())
+            if 0 <= answer <= 1:
+                return answer
+            print(
+                f'Resposta inválida! Por favor, digite um número entre 0 e 1.')
 
     def yes_or_no_question(self, question: str) -> str:
         while True:
