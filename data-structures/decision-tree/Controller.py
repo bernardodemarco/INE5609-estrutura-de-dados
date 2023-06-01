@@ -1,15 +1,15 @@
-from Screen import Screen
+import pickle
+from View import View
 from DecisionTree import DecisionTree
 from Node import Node
 from enums import Answer, Direction
-import pickle
 
 FILENAME = 'tree-data.pkl'
 
 
 class Controller:
     def __init__(self) -> None:
-        self.__screen = Screen()
+        self.__view = View()
         self.__tree = None
         try:
             self.__tree = self.__load()
@@ -25,14 +25,14 @@ class Controller:
             pickle.dump(self.__tree, f)
 
     def play_game(self):
-        self.__screen.show_message('Pense em um time de futebol!')
+        self.__view.show_message('Pense em um time de futebol!')
 
         iterator = self.__tree.root
         parent = None
         direction = None
 
         while not iterator.is_leaf():
-            answer = self.__screen.ask_question(iterator.value)
+            answer = self.__view.ask_question(iterator.value)
             parent = iterator
             if answer == Answer.YES.value:
                 direction = Direction.CORRECT_ANSWER
@@ -41,11 +41,11 @@ class Controller:
                 direction = Direction.WRONG_ANSWER
                 iterator = iterator.no
 
-        answer = self.__screen.guess_answer(iterator.value)
+        answer = self.__view.guess_answer(iterator.value)
         if answer == Answer.YES.value:
             self.end_game()
         elif answer == Answer.NO.value:
-            (new_team, new_question) = self.__screen.ask_difference(iterator.value)
+            (new_team, new_question) = self.__view.ask_difference(iterator.value)
 
             new_question_node = Node.build_question(
                 new_question, iterator.value, new_team)
@@ -53,7 +53,7 @@ class Controller:
             self.__tree.insert(new_question_node, parent, direction)
 
     def end_game(self):
-        answer = self.__screen.yes_or_no_question(
+        answer = self.__view.yes_or_no_question(
             'Jogo finalizado! Deseja recomeçar? (s/n)\n')
         if answer == Answer.YES.value:
             self.play_game()
@@ -67,4 +67,4 @@ class Controller:
             1: self.play_game,
         }
         while True:
-            switcher[self.__screen.show_options()]()
+            switcher[self.__view.show_options()]()

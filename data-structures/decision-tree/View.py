@@ -1,4 +1,4 @@
-class Screen:
+class View:
     def read_answer(self, message='') -> str:
         while True:
             answer = input(message).strip()
@@ -17,11 +17,11 @@ class Screen:
             if 0 <= answer <= 1:
                 return answer
             print(
-                f'Resposta inválida! Por favor, digite um número entre 0 e 1.')
+                f'Resposta inválida! Por favor, digite 0 ou 1.')
 
     def yes_or_no_question(self, question: str) -> str:
         while True:
-            answer = self.read_answer(question)
+            answer = self.read_answer(question).lower()
             if answer == 's' or answer == 'n':
                 return answer
             print('Resposta inválida! Por favor, digite "s" para sim e "n" para não.')
