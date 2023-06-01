@@ -1,5 +1,5 @@
 class View:
-    def read_answer(self, message='') -> str:
+    def read_answer(self, message: str = '') -> str:
         while True:
             answer = input(message).strip()
             if len(answer) > 0:
