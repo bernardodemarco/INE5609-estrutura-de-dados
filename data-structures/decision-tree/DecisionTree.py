@@ -3,7 +3,7 @@ from enums import Direction
 
 
 class DecisionTree:
-    def __init__(self, initial_team) -> None:
+    def __init__(self, initial_team: str) -> None:
         self.__root = Node(initial_team)
 
     @property
