@@ -1,0 +1,98 @@
+{
+    "22100001": {
+        "name": "Inocêncio",
+        "course": "Sistemas de Informação",
+        "soccer_team": "Chapecoense",
+        "salary": 1250
+    },
+    "22100002": {
+        "name": "Hipólito",
+        "course": "Sistemas de Informação",
+        "soccer_team": "Avaí",
+        "salary": 600
+    },
+    "22100003": {
+        "name": "Nazaré",
+        "course": "Ciências da Computação",
+        "soccer_team": "Criciúma",
+        "salary": 3000
+    },
+    "22100004": {
+        "name": "Asdrúbal",
+        "course": "Ciências da Computação",
+        "soccer_team": "Chapecoense",
+        "salary": 8000
+    },
+    "22100005": {
+        "name": "Zaqueu",
+        "course": "Engenharia de Controle e Automação",
+        "soccer_team": "Avaí",
+        "salary": 10000
+    },
+    "22100006": {
+        "name": "Olga",
+        "course": "Engenharia de Controle e Automação",
+        "soccer_team": "Criciúma",
+        "salary": 12000
+    },
+    "22100007": {
+        "name": "Hypotenusa",
+        "course": "Ciências da Computação",
+        "soccer_team": "Avaí",
+        "salary": 750
+    },
+    "22100008": {
+        "name": "Nazaré",
+        "course": "Ciências da Computação",
+        "soccer_team": "Criciúma",
+        "salary": 30000
+    },
+    "22100009": {
+        "name": "Adelírio",
+        "course": "Sistemas de Informação",
+        "soccer_team": "Chapecoense",
+        "salary": 20000
+    },
+    "22100010": {
+        "name": "Tibúrcio",
+        "course": "Sistemas de Informação",
+        "soccer_team": "Avaí",
+        "salary": 2750
+    },
+    "22100011": {
+        "name": "Alenflor",
+        "course": "Engenharia de Controle e Automação",
+        "soccer_team": "Criciúma",
+        "salary": 1400
+    },
+    "22100012": {
+        "name": "Darcília",
+        "course": "Sistemas de Informação",
+        "soccer_team": "Avaí",
+        "salary": 6700
+    },
+    "22100013": {
+        "name": "Magnésia",
+        "course": "Ciências da Computação",
+        "soccer_team": "Chapecoense",
+        "salary": 13000
+    },
+    "22100014": {
+        "name": "Jovelina",
+        "course": "Sistemas de Informação",
+        "soccer_team": "Chapecoense",
+        "salary": 28000
+    },
+    "22100015": {
+        "name": "Nicanor",
+        "course": "Engenharia de Controle e Automação",
+        "soccer_team": "Criciúma",
+        "salary": 19000
+    },
+    "22100016": {
+        "name": "Adamastor",
+        "course": "Sistemas de Informação",
+        "soccer_team": "Avaí",
+        "salary": 575
+    }
+}
