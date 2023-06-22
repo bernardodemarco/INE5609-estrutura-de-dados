@@ -21,7 +21,12 @@ class InvertedList:
         self.__soccer_team_directory = DiscreteDirectory()
         self.__salary_directory = ContinuousDirectory(SALARY_CATEGORIES)
 
-    def set_data(self, new_data: dict) -> None:
+    @property
+    def data(self) -> dict:
+        return self.__data
+
+    @data.setter
+    def data(self, new_data: dict) -> None:
         self.__data = new_data
 
     def add_data_to_directories(self, data_to_add=None) -> None:

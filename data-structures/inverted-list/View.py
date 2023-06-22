@@ -1,13 +1,14 @@
 class View:
-    def read_answer(self, message: str = '', is_number: bool = False) -> str:
+    def read_answer(self, message: str = '', is_numeric: bool = False) -> str:
         while True:
             answer = input(message).strip()
             is_empty = len(answer) == 0
-            if not is_empty and (not is_number or answer.isnumeric()):
+            if not is_empty and (not is_numeric or answer.isnumeric()):
                 return answer
             message = 'Resposta inválida! Por favor, insira ao menos um caractere'
-            if is_number:
+            if is_numeric:
                 message += ' numérico'
+            message += '.'
             print(message)
 
     def show_options(self) -> int:
@@ -20,7 +21,7 @@ class View:
         print('5 - Remover elemento')
         print('6 - Exibir dados')
         while True:
-            answer = int(self.read_answer())
+            answer = int(self.read_answer(is_numeric=True))
             if 0 <= answer <= 6:
                 return answer
             print(
@@ -32,7 +33,7 @@ class View:
         index = self.read_answer('NÚMERO DE MATRÍCULA:')
         course = self.read_answer('CURSO:')
         soccer_team = self.read_answer('TIME DE FUTEBOL PREFERIDO:')
-        salary = int(self.read_answer('SALÁRIO:'))
+        salary = int(self.read_answer(message='SALÁRIO:', is_numeric=True))
         return {
             'name': name,
             'index': index,

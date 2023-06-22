@@ -21,7 +21,7 @@ class Controller:
             student_data = self.__view.ask_student_data()
             self.__inverted_list.insert_element(student_data)
         except Exception as err:
-            print(err)
+            self.__view.show_message(err)
 
     def end(self):
         exit(0)

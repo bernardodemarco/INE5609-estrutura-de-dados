@@ -6,7 +6,7 @@ class DiscreteDirectory:
     def directory(self) -> dict:
         return self.__directory
 
-    def add_index(self, key: str, index: int) -> None:
+    def add_index(self, key: str, index: str) -> None:
         if key in self.__directory:
             self.__directory[key].append(index)
             return
