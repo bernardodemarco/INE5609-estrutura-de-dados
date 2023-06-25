@@ -21,11 +21,15 @@ class Controller:
         query = ''
         if field is SimpleQuery.SALARY.value:
             query = self.__view.get_salary_category()
+        elif field is SimpleQuery.COURSE.value:
+            query = self.__view.read_answer(
+                message='Digite o curso (abreviação -> sin, cco, eca ...):').lower()
         else:
-            query = self.__view.read_answer(message='Digite a busca:')
+            query = self.__view.read_answer(
+                message='Digite o time de futebol').lower()
         indexes = self.__inverted_list.get_simple_query_results(field, query)
         if len(indexes) == 0:
-            self.__view.show_message('Nenhum resultado')
+            self.__view.show_message('Nenhum resultado encontrado')
         else:
             for index in indexes:
                 self.__view.show_student_data({
@@ -37,7 +41,8 @@ class Controller:
         fields = self.__view.show_composite_query_options()
         query = {}
         if fields is CompositeQuery.COURSE_AND_SOCCER_TEAM.value:
-            course_query = self.__view.read_answer(message='Digite o curso:')
+            course_query = self.__view.read_answer(
+                message='Digite o curso (abreviação -> sin, cco, eca, ...):').lower()
             soccer_team_query = self.__view.read_answer(
                 message='Digite o time de futebol:')
             query = {
@@ -45,7 +50,8 @@ class Controller:
                 'soccer_team_query': soccer_team_query
             }
         elif fields is CompositeQuery.COURSE_AND_SALARY.value:
-            course_query = self.__view.read_answer(message='Digite o curso:')
+            course_query = self.__view.read_answer(
+                message='Digite o curso (abreviação -> sin, cco, eca, ...):').lower()
             salary_query = self.__view.get_salary_category()
             query = {
                 'course_query': course_query,
@@ -53,7 +59,7 @@ class Controller:
             }
         else:
             soccer_team_query = self.__view.read_answer(
-                message='Digite o time de futebol:')
+                message='Digite o time de futebol:').lower()
             salary_query = self.__view.get_salary_category()
             query = {
                 'soccer_team_query': soccer_team_query,
@@ -64,7 +70,7 @@ class Controller:
             fields, query)
 
         if len(indexes) == 0:
-            self.__view.show_message('Nenhum resultado')
+            self.__view.show_message('Nenhum resultado encontrado')
         else:
             for index in indexes:
                 self.__view.show_student_data({

@@ -19,8 +19,9 @@ class ContinuousDirectory:
         category = self.get_category(num)
         if category in self.__directory:
             self.__directory[category].append(index)
-        else:
-            self.__directory[category] = [index]
+            return
+
+        self.__directory[category] = [index]
 
     def remove_index(self, num: int, index: str) -> None:
         category = self.get_category(num)

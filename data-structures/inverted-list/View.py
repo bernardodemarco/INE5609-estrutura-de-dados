@@ -7,11 +7,11 @@ class View:
             is_empty = len(answer) == 0
             if not is_empty and (not is_numeric or answer.isnumeric()):
                 return answer
-            message = 'Resposta inválida! Por favor, insira ao menos um caractere'
+            error_message = 'Resposta inválida! Por favor, insira ao menos um caractere'
             if is_numeric:
-                message += ' numérico'
-            message += '.'
-            print(message)
+                error_message += ' numérico'
+            error_message += '.'
+            print(error_message)
 
     def show_options(self) -> int:
         print('O que você gostaria de fazer?')
@@ -74,8 +74,8 @@ class View:
         print('INSIRA AS SEGUINTES INFORMAÇÕES DO ALUNO:')
         name = self.read_answer('NOME:')
         index = self.read_answer('NÚMERO DE MATRÍCULA:')
-        course = self.read_answer('CURSO:')
-        soccer_team = self.read_answer('TIME DE FUTEBOL PREFERIDO:')
+        course = self.read_answer('CURSO (abreviação -> sin, cco, eca, ...):').lower()
+        soccer_team = self.read_answer('TIME DE FUTEBOL PREFERIDO:').lower()
         salary = int(self.read_answer(message='SALÁRIO:', is_numeric=True))
         return {
             'name': name,

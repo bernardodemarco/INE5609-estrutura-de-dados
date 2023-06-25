@@ -7,7 +7,6 @@ class DiscreteDirectory:
         return self.__directory
 
     def get_indexes(self, query: str) -> list:
-        print(query)
         if query not in self.__directory:
             return []
 
